@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Your Game</title>
+    <!--this-->
+    <style>
+        #emailScreen, #emailForm, #emailInput, #emailSubmit {
+            transition: opacity 1s ease, transform 1s ease;}
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        .loading-container {
+            text-align: center;
+            position: relative;
+        }
+
+        .loading-screen {
+            background-color: #000;
+            color: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 2s ease-in-out;
+            width: 300px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .loading-text {
+            font-size: 24px;
+        }
+
+        .loading-bar-container {
+            width: 100%;
+            background-color: #333;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .loading-bar {
+            width: 0%;
+            height: 20px;
+            background-color: #ff5733;
+            border-radius: 5px;
+            transition: width 0.5s ease-in-out;
+        }
+
+        .loading-tips {
+            margin-top: 20px;
+        }
+
+        /* Styles for the email form */
+        #emailScreen {
+            display: none;
+            text-align: center;
+            color: #000000;
+        }
+
+        #emailForm {
+            text-align: center;
+        }
+
+        #emailInput {
+            color: rgb(0, 0, 0);
+            padding: 10px;
+            border: 2px solid #ff5733;
+            border-radius: 5px;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        #emailSubmit {
+            color: #fff;
+            background-color: #ff5733;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        img {
+            max-width: 100%; /*image never exceeds the container*/
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <!--this is a place for a loading screen sghdnsdfjkjkdfkjdjkajdfjnajknfklsmnfklamfkasmfklsfsamfklsdfksfk-->
+    <!-- Loading screen -->
+    <div class="loading-container">
+        <div class="loading-screen">
+            <div class="loading-text">Loading...</div>
+            <div class="loading-bar-container">
+                <div class="loading-bar"></div>
+            </div>
+            <div class="loading-tips">Loading Tip: Be yourself and have fun!</div>
+        </div>
+    </div>
+
+    <!-- Email screen (initially hidden) gjmldkgk;dgdg;ldggd'sgdgldsglgd;gl';lhghlfh;'hgh;j\;fgh;'ghlhfh -->
+  
+    <div id="emailScreen">
+        <img src="1.png" alt="sdsadsasd">
+        <h2>Enter Your Email</h2>
+        <form id="emailForm">
+            <input type="email" id="emailInput" placeholder="Your Email">
+            <button type="submit" id="emailSubmit">Submit</button>
+        </form>
+    </div>
+
+    <!-- JavaScript for setting and reading cookies fghkfgkhlfdlg'dgsdlgldsfgldsglsd;gldsgd;gl;dgld;gl;dg-->
+    <script>
+        // Simulate loading progress (replace with your actual loading logic)
+        let loadingProgress = 0;
+
+        function simulateLoading() {
+            loadingProgress += 1;
+            const loadingBar = document.querySelector('.loading-bar');
+            loadingBar.style.width = loadingProgress + '%';
+
+            if (loadingProgress >= 100) {
+                loadingComplete();
+            } else {
+                setTimeout(simulateLoading, 50);
+            }
+        }
+// Function to set a cookie
+function setCookie(cookieName, cookieValue, expirationDays) {
+    const d = new Date();
+    d.setTime(d.getTime() + (expirationDays * 24 * 60 * 60 * 1000));
+    const expires = `expires=${d.toUTCString()}`;
+    document.cookie = `${cookieName}=${cookieValue};${expires};path=/`;
+}
+
+        function loadingComplete() {
+            const loadingScreen = document.querySelector('.loading-container');
+            loadingScreen.style.display = 'none';
+
+            // Show the email screen
+            const emailScreen = document.getElementById('emailScreen');
+            emailScreen.style.display = 'block';
+        }
+
+        window.addEventListener('load', () => {
+            simulateLoading();
+        });
+
+       // Your other JavaScript code here, such as handling the email form submission
+document.getElementById('emailSubmit').addEventListener('click', function (e) {
+    e.preventDefault(); // Prevent the form from submitting
+    const userEmail = document.getElementById('emailInput').value;
+    setCookie('userEmail', userEmail, 7); // Set the email as a cookie
+    alert('Email saved as a cookie: ' + userEmail);
+});
+    </script>
+</body>
+</html>
+
